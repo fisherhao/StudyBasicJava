@@ -24,14 +24,14 @@ public class FactoryBeanTest {
 
 	@org.junit.Test
 	public void  testBean1(){
-		System.out.println("FACTORYDE 任务1");
+		System.out.println("FactoryBean 任务1");
 		System.out.println(task1.getTaskDesc());
 		System.out.println(task1);
 	}
 
 	@org.junit.Test
-	public void  testBean2(){
-		System.out.println("FACTORYDE 任务2");
+	public void testBean2() {
+		System.out.println("FactoryBean 任务2");
 		System.out.println(task2.getTaskDesc());
 		System.out.println(task2);
 	}
