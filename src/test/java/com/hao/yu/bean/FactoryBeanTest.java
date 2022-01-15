@@ -27,6 +27,7 @@ public class FactoryBeanTest {
 		System.out.println("FactoryBean 任务1");
 		System.out.println(task1.getTaskDesc());
 		System.out.println(task1);
+		System.out.println("FactoryBean 任务1");
 	}
 
 	@org.junit.Test
