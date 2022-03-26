@@ -33,7 +33,7 @@ public class FactoryBeanTest {
 	@org.junit.Test
 	public void testBean2() {
 
-		System.out.println("FactoryBean 任务2");
+		System.out.println("FactoryBean 任务 2");
 		System.out.println(task2.getTaskDesc());
 		System.out.println(task2.getTaskName());
 		System.out.println(task2);
