@@ -1,5 +1,6 @@
 package com.hao.yu.test.bean;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,5 +28,10 @@ public class BeanConfig {
 	public FactoryBeanTest task2() {
 		FactoryBeanTest test = new FactoryBeanTest();
 		return test;
+	}
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(BeanConfig.class);
+
 	}
 }
