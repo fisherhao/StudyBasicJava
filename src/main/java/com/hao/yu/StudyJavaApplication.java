@@ -17,6 +17,7 @@ public class StudyJavaApplication {
 
 	public static void main(String[] args) {
 		System.out.println("开始启动可好");
+
 		ConfigurableApplicationContext run = SpringApplication.run(StudyJavaApplication.class, args);
 		System.out.println("结束启动哈哈");
 		//getAllReqestMapping(run);
