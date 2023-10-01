@@ -1,6 +1,8 @@
 package com.hao.yu.test.tools;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import cn.hutool.Hutool;
 
@@ -14,11 +16,13 @@ public class TestTool {
 
     public static void main(String[] args) {
 
-        System.out.println("的额外功");
-        System.out.println("点击工具给哦额外");
+        System.out.println("查看全部的工具");
         Set<Class<?>> allUtils = Hutool.getAllUtils();
-        for (Class<?> allUtil : allUtils) {
-             System.out.println(allUtil.getSimpleName());
-        }
+
+        List<String> collect = allUtils.stream().map(t -> t.getSimpleName()).sorted().collect(Collectors.toList());
+
+        System.out.println(collect);
+        System.out.println();
+        collect.stream().forEach(System.out::println);
     }
 }
