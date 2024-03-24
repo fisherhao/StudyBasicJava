@@ -52,7 +52,7 @@ public class MoveFile {
     }
 
     private static List<String> files() {
-        File file = new File("/Users/yuhao/Desktop/各类电子书籍精品大合集");
+        File file = new File("/Users/待定/Desktop/各类电子书籍精品大合集");
 
         List<String> filePaths = new ArrayList<>();
         if (file.isDirectory()) {
@@ -82,7 +82,7 @@ public class MoveFile {
     }
 
     private static void move(String filePath, List<String> stringList, Set<String> read) {
-        String target = "/Users/yuhao/Desktop/目标书库";
+        String target = "/Users/待定/Desktop/目标书库";
         String fileName = filePath.substring(filePath.lastIndexOf("/"));
 
         String newFileName = null;
@@ -137,7 +137,7 @@ public class MoveFile {
 
     }
 
-    private static final String file_Path = "/Users/yuhao/Desktop/记录/书名记录.txt";
+    private static final String file_Path = "/Users/待定/Desktop/记录/书名记录.txt";
 
     private static void write(List<String> stringList) {
 

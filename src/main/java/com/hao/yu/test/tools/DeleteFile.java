@@ -34,7 +34,7 @@ public class DeleteFile {
     }
 
     private static List<String> files() {
-        File file = new File("/Users/yuhao/Desktop/目标书库/");
+        File file = new File("/Users/待定/Desktop/目标书库/");
 
         List<String> filePaths = new ArrayList<>();
         if (file.isDirectory()) {
