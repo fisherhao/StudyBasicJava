@@ -10,7 +10,7 @@ public final class EmailFileUtil {
 
     public static List<String> getFiles() throws IOException {
 
-        String folder = "/Users/yuhao/Downloads/06网盘/";
+        String folder = "/Users/Witty·Kid Fisher/Downloads/06网盘/";
 
         List<String> collect = Files
                 .list(Paths.get(folder))
@@ -24,7 +24,7 @@ public final class EmailFileUtil {
 
     public static List<String> getFileName() throws IOException {
 
-        String folder = "/Users/yuhao/Downloads/06网盘/";
+        String folder = "/Users/Witty·Kid Fisher/Downloads/06网盘/";
 
         return Files
                 .list(Paths.get(folder))

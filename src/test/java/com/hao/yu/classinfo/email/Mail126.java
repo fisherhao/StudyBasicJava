@@ -148,7 +148,7 @@ public class Mail126 {
 
     private static List<String> getFiles() throws IOException {
 
-        String folder = "/Users/yuhao/Downloads/06网盘/";
+        String folder = "/Users/Witty·Kid Fisher/Downloads/06网盘/";
 
         List<String> collect = Files
                 .list(Paths.get(folder))
@@ -162,7 +162,7 @@ public class Mail126 {
 
     private static List<String> getFileName() throws IOException {
 
-        String folder = "/Users/yuhao/Downloads/06网盘/";
+        String folder = "/Users/Witty·Kid Fisher/Downloads/06网盘/";
 
         List<String> collect = Files
                 .list(Paths.get(folder))
@@ -234,7 +234,7 @@ public class Mail126 {
     }
 
     private static void sendmail() {
-        String attachmentPath = "/Users/yuhao/Downloads/06网盘/02.5.2 案例：滴滴的用户激励体系.mp4"; // 附件路径
+        String attachmentPath = "/Users/Witty·Kid Fisher/Downloads/06网盘/02.5.2 案例：滴滴的用户激励体系.mp4"; // 附件路径
         sendmail(attachmentPath);
     }
 
