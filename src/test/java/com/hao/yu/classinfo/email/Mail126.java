@@ -196,7 +196,7 @@ public class Mail126 {
     private static void sendmail(String subject, String emailBody, String attachmentPath) {
 
         try {
-            String toAddress = "uu03@qq.com"; // 收件人邮箱
+            String toAddress = "xxxx@qq.com"; // 收件人邮箱
 
             long l = System.currentTimeMillis();
 
@@ -216,7 +216,7 @@ public class Mail126 {
         // SMTP服务器端口
         // 你的邮箱用户名
         // 你的邮箱密码
-        String toAddress = "uu03@qq.com"; // 收件人邮箱
+        String toAddress = "xxxx@qq.com"; // 收件人邮箱
         String subject = "Email with Attachment" + System.currentTimeMillis(); // 邮件主题
         String emailBody = "This is an email with an attachment."; // 邮件正文
 

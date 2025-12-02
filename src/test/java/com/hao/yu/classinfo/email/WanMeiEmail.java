@@ -121,7 +121,7 @@ public class WanMeiEmail {
 
         List<String> files = EmailFileUtil.getFiles();
 
-        sendmail("uu03@qq.com", "【" + fileName.get(new Random().nextInt(fileName.size())) + "】",
+        sendmail("xxxx@qq.com", "【" + fileName.get(new Random().nextInt(fileName.size())) + "】",
                 "【" + fileName.get(new Random().nextInt(fileName.size())) + "】",
                 files.get(new Random().nextInt(files.size())));
 
