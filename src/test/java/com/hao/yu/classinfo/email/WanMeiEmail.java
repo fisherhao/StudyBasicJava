@@ -37,7 +37,7 @@ public class WanMeiEmail {
 
     private static final AtomicInteger count = new AtomicInteger(0);
 
-    private static final String userName = "hao.yu@email.cn"; // 你的邮箱用户名
+    private static final String userName = "xxx@email.cn"; // 你的邮箱用户名
 
     private static final Authenticator auth;
 
