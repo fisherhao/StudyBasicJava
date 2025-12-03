@@ -6,7 +6,7 @@ package com.hao.yu.lc;
  * @author Witty·Kid Fisher
  * @version v 0.1 2025年12月02日 星期二 20:52
  */
-public class T00_字符串转换整数 {
+public class T008_字符串转换整数 {
     public static void main(String[] args) {
 
 //        System.out.println(myAtoi("42"));
