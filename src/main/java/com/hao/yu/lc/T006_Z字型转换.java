@@ -1,5 +1,8 @@
 package com.hao.yu.lc;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,47 +66,12 @@ public class T006_Z字型转换 {
         return builder.toString();
     }
 
+    @Setter
+    @Getter
     static class ModelTest {
         private Integer level;
 
         private char ch;
 
-        /**
-         * Getter method for property <tt>level</tt>.
-         *
-         * @return property value of level
-         */
-        public Integer getLevel() {
-            return level;
-        }
-
-        /**
-         * Setter method for property <tt>level</tt>.
-         *
-         * @param level
-         *         value to be assigned to property
-         */
-        public void setLevel(Integer level) {
-            this.level = level;
-        }
-
-        /**
-         * Getter method for property <tt>ch</tt>.
-         *
-         * @return property value of ch
-         */
-        public char getCh() {
-            return ch;
-        }
-
-        /**
-         * Setter method for property <tt>ch</tt>.
-         *
-         * @param ch
-         *         value to be assigned to property
-         */
-        public void setCh(char ch) {
-            this.ch = ch;
-        }
     }
 }
