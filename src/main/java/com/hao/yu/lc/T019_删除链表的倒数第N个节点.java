@@ -21,7 +21,7 @@ public class T019_删除链表的倒数第N个节点 {
         head.next.next.next = new ListNode(40);
         head.next.next.next.next = new ListNode(50);
 
-        ListNode listNode = removeNthFromEnd(head, 1);
+        ListNode listNode = removeNthFromEnd1(head, 5);
 
         System.out.println(JSON.toJSONString(listNode));
 
@@ -62,12 +62,7 @@ public class T019_删除链表的倒数第N个节点 {
         int level = move(head.next, n);
 
         if (level == n) {
-
-            if (level == 1) {
-                head.next = null;
-            } else {
-                head.next = head.next.next;
-            }
+            head.next = head.next.next;
         }
 
         return level + 1;
