@@ -5,23 +5,23 @@ import org.springframework.beans.factory.FactoryBean;
 /**
  * 说明：
  *
- * @author： Fisher.Hao
+ * @author： Witty·Kid Fisher
  * @date： 2022-01-15 18:18:59
  */
-public class FactoryBeanTest implements FactoryBean<Task> {
+public class FactoryBeanTest implements FactoryBean<TaskTets> {
 
-	@Override
-	public Task getObject() throws Exception {
-		return new Task("task", "任务描述");
-	}
+    @Override
+    public TaskTets getObject() throws Exception {
+        return new TaskTets("task", "任务描述");
+    }
 
-	@Override
-	public Class<?> getObjectType() {
-		return Task.class;
-	}
+    @Override
+    public Class<?> getObjectType() {
+        return TaskTets.class;
+    }
 
-	@Override
-	public boolean isSingleton() {
-		return false;
-	}
+    @Override
+    public boolean isSingleton() {
+        return false;
+    }
 }

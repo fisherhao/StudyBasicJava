@@ -6,19 +6,19 @@ import org.springframework.stereotype.Component;
 /**
  * 说明：
  *
- * @author： Fisher.Hao
+ * @author： Witty·Kid Fisher
  * @date： 2022-04-30 16:52:07
  */
 @Data
 @Component
 public class SimpleClassImpl implements SimpleClass {
-	@Override
-	public String getCurrentName() {
-		return "nidaye";
-	}
+    @Override
+    public String getCurrentName() {
+        return "nidaye";
+    }
 
-	@Override
-	public Integer getCurrentNameLength() {
-		return 3;
-	}
+    @Override
+    public Integer getCurrentNameLength() {
+        return 3;
+    }
 }

@@ -3,12 +3,12 @@ package com.hao.yu.classinfo;
 /**
  * 说明：
  *
- * @author： Fisher.Hao
+ * @author： Witty·Kid Fisher
  * @date： 2022-04-30 16:51:30
  */
 public interface SimpleClass {
 
-	String getCurrentName();
+    String getCurrentName();
 
-	Integer getCurrentNameLength();
+    Integer getCurrentNameLength();
 }
