@@ -10,7 +10,7 @@ import java.util.List;
  * @author Witty·Kid Fisher
  * @version v 0.1 2025年12月04日 星期四 17:05
  */
-public class T015三数之和 {
+public class T015_三数之和 {
     public static List<List<Integer>> threeSum2(int[] nums) {
 
         Arrays.sort(nums);
