@@ -3,6 +3,7 @@ package com.hao.yu.lc;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,16 +37,13 @@ public class T017_电话号码的字母组合 {
         List<String> result = new ArrayList<>();
 
         boolean notFirst = true;
-        for (int i = 0; i < charArray.length; i++) {
+        for (char c : charArray) {
 
-            char c = charArray[i];
             Integer num = c - '0';
             String[] str = map.get(num);
 
             if (result.isEmpty()) {
-                for (String s1 : str) {
-                    result.add(s1);
-                }
+                Collections.addAll(result, str);
             }
 
             List<String> temp = new ArrayList<>();
