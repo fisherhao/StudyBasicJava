@@ -23,15 +23,18 @@ public class T018_四数之和 {
 
     public List<List<Integer>> fourSum(int[] nums, int target) {
 
+        //排序
         Arrays.sort(nums);
 
         List<List<Integer>> res = new ArrayList<>();
 
         for (int i = 0; i < nums.length - 3; i++) {
+            //本次和上一次的重复了
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
             for (int j = i + 1; j < nums.length - 2; j++) {
+                //本次和上一次的重复了
                 if (j > i + 1 && nums[j - 1] == nums[j]) {
                     continue;
                 }
@@ -44,9 +47,11 @@ public class T018_四数之和 {
                     long sum = (long) nums[begin] + (long) nums[end];
                     if (sum - temTarget == 0L) {
                         res.add(Arrays.asList(nums[i], nums[j], nums[begin], nums[end]));
+                        //重复的
                         while (begin < end && nums[begin] == nums[begin + 1]) {
                             begin++;
                         }
+                        //重复的
                         while (begin < end && nums[end] == nums[end - 1]) {
                             end--;
                         }
