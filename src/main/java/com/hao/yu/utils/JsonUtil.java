@@ -8,12 +8,12 @@ import com.alibaba.fastjson.JSON;
  * @author Witty·Kid Fisher
  * @version v 0.1 2025年12月07日 星期日 23:05
  */
-public final class JosnUtil {
+public final class JsonUtil {
 
-    private JosnUtil() {
+    private JsonUtil() {
         throw new AssertionError("No " + this.getClass().getName() + " instances for you!");
     }
- 
+
     public static String toJson(Object obj) {
         if (obj == null) {
             return null;

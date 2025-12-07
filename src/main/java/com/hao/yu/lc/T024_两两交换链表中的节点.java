@@ -1,8 +1,8 @@
 package com.hao.yu.lc;
 
-import com.alibaba.fastjson.JSON;
-
 import java.util.Objects;
+
+import static com.hao.yu.utils.JsonUtil.toJson;
 
 /**
  * 说明：
@@ -26,8 +26,7 @@ public class T024_两两交换链表中的节点 {
         listNode.next.next.next.next.next.next.next.next = new ListNode(9);
         listNode.next.next.next.next.next.next.next.next.next = new ListNode(10);
 
-        System.out.println(JSON.toJSONString(swapPairs(listNode)));
-        System.out.println(JSON.toJSONString(swapPairs(listNode)));
+        System.out.println(toJson(swapPairs(listNode)));
 
     }
 
@@ -41,13 +40,22 @@ public class T024_两两交换链表中的节点 {
         ListNode tail;
         while (Objects.nonNull(current.next) && Objects.nonNull(current.next.next)) {
 
-            tail = current.next;
+            ListNode node1 = current.next;
+            ListNode node2 = current.next.next;
 
-            current.next = tail.next;
-            tail.next = tail.next.next;
-            current.next.next = tail;
+            node1.next = node2.next;
+            node2.next = node1;
+            current.next = node2;
 
-            current = tail;
+            current = node1;
+
+//            tail = current.next;
+//
+//            current.next = tail.next;
+//            tail.next = tail.next.next;
+//            current.next.next = tail;
+//
+//            current = tail;
         }
 
         return newNode.next;
