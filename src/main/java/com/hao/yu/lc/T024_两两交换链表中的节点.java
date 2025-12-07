@@ -14,6 +14,7 @@ import java.util.Objects;
 public class T024_两两交换链表中的节点 {
 
     public static void main(String[] args) {
+//初始化链表
         ListNode listNode = new ListNode(1);
         listNode.next = new ListNode(2);
         listNode.next.next = new ListNode(3);
@@ -24,6 +25,7 @@ public class T024_两两交换链表中的节点 {
         listNode.next.next.next.next.next.next.next = new ListNode(8);
         listNode.next.next.next.next.next.next.next.next = new ListNode(9);
         listNode.next.next.next.next.next.next.next.next.next = new ListNode(10);
+
         System.out.println(JSON.toJSONString(swapPairs(listNode)));
         System.out.println(JSON.toJSONString(swapPairs(listNode)));
 
