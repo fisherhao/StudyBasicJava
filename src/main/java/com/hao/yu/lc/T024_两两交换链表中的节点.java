@@ -36,7 +36,7 @@ public class T024_两两交换链表中的节点 {
 
         //当前只针
         ListNode current = newNode;
-        
+
         //尾针
         while (Objects.nonNull(current.next) && Objects.nonNull(current.next.next)) {
 
