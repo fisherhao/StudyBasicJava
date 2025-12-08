@@ -36,8 +36,12 @@ public class T082_删除排序链表中的重复元素II {
 
         while (pre.next != null) {
 
-            if ((pre.next.next != null && pre.next.val == pre.next.next.val) || (Objects.nonNull(
-                    temp) && temp.val == pre.next.val)) {
+            if (
+                //当前节点和下一个节点相同
+                    (pre.next.next != null && pre.next.val == pre.next.next.val) ||
+
+                            //当前节点已经存在相同的节点了
+                            (Objects.nonNull(temp) && temp.val == pre.next.val)) {
 
                 temp = pre.next;
                 pre.next = pre.next.next;
