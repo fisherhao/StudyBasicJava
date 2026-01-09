@@ -219,21 +219,29 @@ public class FileMoveUtils {
         }
     }
 
-    public static void main(String[] args) {
+    public static void test01(String sourceFolder, String targetFolder) {
         // 示例用法
-        try {
-            // 示例：将A文件夹中的所有图书或文本文件移动到B文件夹（平铺）
-            String sourceFolder =
-                    "/Users/yuhao/Downloads/06网盘/全网VIP小说排行榜Top100，必读热门网文书单合集"; // 源文件夹路径
-            String targetFolder =
-                    "/Users/yuhao/Downloads/06网盘/hahahah"; // 目标文件夹路径
 
+//        // 示例：将A文件夹中的所有图书或文本文件移动到B文件夹（平铺）
+//        String sourceFolder =
+//                "/Users/yuhao/Downloads/06网盘/全网VIP小说排行榜Top100，必读热门网文书单合集"; // 源文件夹路径
+//        String targetFolder =
+//                "/Users/yuhao/Downloads/06网盘/hahahah"; // 目标文件夹路径
+
+        try {
             moveBookAndTextFilesFlat(sourceFolder, targetFolder);
-            System.out.println("图书和文本文件平铺移动完成！");
         } catch (IOException e) {
-            System.err.println("移动文件时发生错误：" + e.getMessage());
             e.printStackTrace();
         }
+        System.out.println("图书和文本文件平铺移动完成！");
+
     }
+
+    public static void main(String[] args) {
+        test01("C:\\Users\\yuhao\\Downloads\\06网盘\\全网VIP小说排行榜Top100，必读热门网文书单合集",
+                "C:\\Users\\yuhao\\Downloads\\06网盘\\hahahah");
+
+    }
+
 }
 
