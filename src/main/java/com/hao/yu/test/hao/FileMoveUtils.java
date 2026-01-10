@@ -44,7 +44,8 @@ public class FileMoveUtils {
      * @throws IOException
      *     移动过程中可能出现IO异常
      */
-    public static void moveBookAndTextFilesFlat(String sourceFolderPath, String targetFolderPath) throws IOException {
+    public static void moveBookAndTextFilesFlat(String sourceFolderPath, String targetFolderPath)
+        throws IOException {
         Path sourcePath = Paths.get(sourceFolderPath);
         Path targetPath = Paths.get(targetFolderPath);
 
@@ -68,7 +69,8 @@ public class FileMoveUtils {
      * @throws IOException
      *     移动过程中可能出现IO异常
      */
-    private static void moveBookAndTextFilesRecursive(Path sourceDir, Path targetDir) throws IOException {
+    private static void moveBookAndTextFilesRecursive(Path sourceDir, Path targetDir)
+        throws IOException {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(sourceDir)) {
             for (Path sourceItem : stream) {
                 if (Files.isDirectory(sourceItem)) {
@@ -154,7 +156,8 @@ public class FileMoveUtils {
      * @throws IOException
      *     移动过程中可能出现IO异常
      */
-    public static void moveFolderContents(String sourceFolderPath, String targetFolderPath) throws IOException {
+    public static void moveFolderContents(String sourceFolderPath, String targetFolderPath)
+        throws IOException {
         Path sourcePath = Paths.get(sourceFolderPath);
         Path targetPath = Paths.get(targetFolderPath);
 
@@ -193,7 +196,8 @@ public class FileMoveUtils {
      * @throws IOException
      *     移动过程中可能出现IO异常
      */
-    private static void moveDirectoryRecursively(Path sourceDir, Path targetDir) throws IOException {
+    private static void moveDirectoryRecursively(Path sourceDir, Path targetDir)
+        throws IOException {
         if (!Files.exists(targetDir)) {
             Files.createDirectories(targetDir);
         }
@@ -243,7 +247,8 @@ public class FileMoveUtils {
 
 //        // 示例：将A文件夹中的所有图书或文本文件移动到B文件夹（平铺）
 //        String sourceFolder =
-//                "/Users/www/Downloads/06网盘/全网VIP小说排行榜Top100，必读热门网文书单合集"; // 源文件夹路径
+//                "/Users/www/Downloads/06网盘/全网VIP小说排行榜Top100，必读热门网文书单合集";
+// 源文件夹路径
 //        String targetFolder =
 //                "/Users/www/Downloads/06网盘/hahahah"; // 目标文件夹路径
 
