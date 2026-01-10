@@ -6,9 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 说明：
@@ -17,25 +20,29 @@ import java.util.Set;
  * @version v 0.1 2026年01月09日 星期五 22:05
  */
 public class FileMoveUtils {
+    private static final AtomicInteger movedFileCount = new AtomicInteger();
+
+    private static final List<String> moveList = new ArrayList<>();
 
     // 定义常见的图书格式和文本格式扩展名
-    private static final Set<String> BOOK_AND_TEXT_EXTENSIONS = new HashSet<>(Arrays.asList(
+    private static final Set<String> BOOK_AND_TEXT_EXTENSIONS = new HashSet<>(
+        Arrays.asList(
             ".txt", ".pdf", ".epub", ".mobi", ".azw", ".azw3", ".fb2", ".lit",
             ".lrf", ".pdb", ".pml", ".rb", ".tcr", ".html", ".htm", ".xml",
             ".doc", ".docx", ".odt", ".rtf", ".tex", ".wks", ".wps", ".wpd",
             ".md", ".markdown", ".djvu", ".cbz", ".cbr", ".cb7", ".cba", ".cbt"
-    ));
+        ));
 
     /**
      * 将源文件夹下的所有图书格式或文本文件移动到目标文件夹，并平铺（不保留子文件夹结构）
      *
      * @param sourceFolderPath
-     *         源文件夹路径
+     *     源文件夹路径
      * @param targetFolderPath
-     *         目标文件夹路径
+     *     目标文件夹路径
      *
      * @throws IOException
-     *         移动过程中可能出现IO异常
+     *     移动过程中可能出现IO异常
      */
     public static void moveBookAndTextFilesFlat(String sourceFolderPath, String targetFolderPath) throws IOException {
         Path sourcePath = Paths.get(sourceFolderPath);
@@ -54,12 +61,12 @@ public class FileMoveUtils {
      * 递归查找并移动图书格式或文本文件到目标文件夹（平铺）
      *
      * @param sourceDir
-     *         源目录
+     *     源目录
      * @param targetDir
-     *         目标目录（平铺所有文件）
+     *     目标目录（平铺所有文件）
      *
      * @throws IOException
-     *         移动过程中可能出现IO异常
+     *     移动过程中可能出现IO异常
      */
     private static void moveBookAndTextFilesRecursive(Path sourceDir, Path targetDir) throws IOException {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(sourceDir)) {
@@ -78,8 +85,14 @@ public class FileMoveUtils {
                             // 处理文件名冲突
                             targetFile = getUniqueFilePath(targetFile);
 
-                            Files.move(sourceItem, targetFile, StandardCopyOption.REPLACE_EXISTING);
-                            System.out.println("Moved: " + sourceItem + " -> " + targetFile);
+                            Files.move(sourceItem, targetFile,
+                                StandardCopyOption.REPLACE_EXISTING);
+
+                            String x = getX(sourceItem, targetFile);
+                            System.out.println(x);
+
+                            moveList.add(x);
+                            movedFileCount.incrementAndGet();
                             break; // 找到匹配的扩展名后跳出循环
                         }
                     }
@@ -88,16 +101,20 @@ public class FileMoveUtils {
         }
     }
 
+    private static String getX(Path sourceItem, Path targetFile) {
+        return "Moved: " + sourceItem + " -> " + targetFile;
+    }
+
     /**
      * 获取唯一的目标文件路径（如果文件已存在则添加数字后缀）
      *
      * @param targetFile
-     *         目标文件路径
+     *     目标文件路径
      *
      * @return 唯一的文件路径
      *
      * @throws IOException
-     *         可能出现IO异常
+     *     可能出现IO异常
      */
     private static Path getUniqueFilePath(Path targetFile) throws IOException {
         if (!Files.exists(targetFile)) {
@@ -130,12 +147,12 @@ public class FileMoveUtils {
      * 将源文件夹下的所有文件（包含子文件夹）移动到目标文件夹（保持原有结构）
      *
      * @param sourceFolderPath
-     *         源文件夹路径
+     *     源文件夹路径
      * @param targetFolderPath
-     *         目标文件夹路径
+     *     目标文件夹路径
      *
      * @throws IOException
-     *         移动过程中可能出现IO异常
+     *     移动过程中可能出现IO异常
      */
     public static void moveFolderContents(String sourceFolderPath, String targetFolderPath) throws IOException {
         Path sourcePath = Paths.get(sourceFolderPath);
@@ -158,7 +175,8 @@ public class FileMoveUtils {
                     deleteDirectory(sourceItem);
                 } else {
                     // 如果是文件，则直接移动
-                    Files.move(sourceItem, targetItem, StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(sourceItem, targetItem,
+                        StandardCopyOption.REPLACE_EXISTING);
                 }
             }
         }
@@ -168,12 +186,12 @@ public class FileMoveUtils {
      * 递归移动目录及其内容
      *
      * @param sourceDir
-     *         源目录
+     *     源目录
      * @param targetDir
-     *         目标目录
+     *     目标目录
      *
      * @throws IOException
-     *         移动过程中可能出现IO异常
+     *     移动过程中可能出现IO异常
      */
     private static void moveDirectoryRecursively(Path sourceDir, Path targetDir) throws IOException {
         if (!Files.exists(targetDir)) {
@@ -189,7 +207,8 @@ public class FileMoveUtils {
                     moveDirectoryRecursively(sourceItem, targetItem);
                 } else {
                     // 移动文件
-                    Files.move(sourceItem, targetItem, StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(sourceItem, targetItem,
+                        StandardCopyOption.REPLACE_EXISTING);
                 }
             }
         }
@@ -199,10 +218,10 @@ public class FileMoveUtils {
      * 删除目录及其所有内容
      *
      * @param dir
-     *         要删除的目录
+     *     要删除的目录
      *
      * @throws IOException
-     *         删除过程中可能出现IO异常
+     *     删除过程中可能出现IO异常
      */
     private static void deleteDirectory(Path dir) throws IOException {
         if (Files.exists(dir)) {
@@ -239,7 +258,7 @@ public class FileMoveUtils {
 
     public static void main(String[] args) {
         test01("/Users/yuhao/Downloads/06网盘/00000原始文件汇合",
-                "/Users/yuhao/Downloads/06网盘/000000上传了");
+            "/Users/yuhao/Downloads/06网盘/000000上传了");
 
     }
 
