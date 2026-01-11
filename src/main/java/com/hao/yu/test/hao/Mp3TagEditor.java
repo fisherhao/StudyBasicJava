@@ -102,6 +102,8 @@ public class Mp3TagEditor {
             // 设置专辑名称
             tag.setField(FieldKey.ALBUM, albumName);
 
+            tag.setField(FieldKey.ALBUM_ARTIST_SORT, "动漫原声");
+
             // 保存修改
             audioFile.commit();
 
@@ -125,5 +127,6 @@ public class Mp3TagEditor {
 
     public static void main(String[] args) {
         test001("/Users/yuhao/Downloads/06网盘/电台节目1", "凡人修仙传原声带");
+        test001("/Users/yuhao/Downloads/06网盘/电台节目2", "凡人修仙传原声");
     }
 }

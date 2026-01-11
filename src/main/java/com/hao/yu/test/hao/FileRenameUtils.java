@@ -69,9 +69,23 @@ public class FileRenameUtils {
                 } else if (Files.isRegularFile(item)) {
                     // 如果是文件，检查文件名是否包含需要替换的字符串
                     String fileName = item.getFileName().toString();
+                    boolean needRename = false;
+                    String newFileName = fileName;
+
+                    // 替换文件名中的字符串
                     if (fileName.contains(oldString)) {
-                        // 替换文件名中的字符串
-                        String newFileName = fileName.replace(oldString, newString);
+                        newFileName = fileName.replace(oldString, newString);
+                        needRename = true;
+                    }
+
+                    // 剔除文件名开头数字加点号的部分（如"01.文件名.mp3" -> "文件名.mp3"）
+                    String processedFileName = removeLeadingNumberAndDot(newFileName);
+                    if (!processedFileName.equals(newFileName)) {
+                        newFileName = processedFileName;
+                        needRename = true;
+                    }
+
+                    if (needRename) {
                         Path newFilePath = item.getParent().resolve(newFileName);
 
                         // 处理文件名冲突
@@ -86,6 +100,25 @@ public class FileRenameUtils {
                 }
             }
         }
+    }
+
+    /**
+     * 剔除文件名开头数字加点号的部分（如"01.文件名.mp3" -> "文件名.mp3"）
+     *
+     * @param fileName
+     *     原始文件名
+     *
+     * @return 处理后的文件名
+     */
+    private static String removeLeadingNumberAndDot(String fileName) {
+        // 匹配文件名开头的模式：一个或多个数字，后跟一个点号
+        // 例如："01.文件名.mp3" -> "文件名.mp3"
+        if (fileName != null && fileName.length() > 0) {
+            // 使用正则表达式匹配开头的一个或多个数字后跟点号
+            String processed = fileName.replaceFirst("^\\d+\\.", "");
+            return processed;
+        }
+        return fileName;
     }
 
     /**
