@@ -130,12 +130,13 @@ public class FileRenameUtils {
         try {
             batchRenameFiles(folderPath, oldString, newString);
         } catch (IOException e) {
+            // 处理异常
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        
+
         test001("/Users/yuhao/Downloads/06网盘/电台节目1", "（ai提取版）", "");
         test001("/Users/yuhao/Downloads/06网盘/电台节目2", "楓葉落慕 - ", "");
         test001("/Users/yuhao/Downloads/06网盘/电台节目1", "星环联邦统帅 - ", "");
