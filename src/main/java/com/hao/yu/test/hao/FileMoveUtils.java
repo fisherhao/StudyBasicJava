@@ -98,8 +98,11 @@ public class FileMoveUtils {
                             String bookName = getBookNameWithoutExtension(
                                 originalFileName);
 
-                            // 检查书名是否已移动过
-                            if (movedBookNames.contains(bookName)) {
+                            // 清理书名（删除空格和特殊符号）
+                            String cleanedBookName = cleanBookName(bookName);
+
+                            // 检查书名是否已移动过（使用清理后的书名）
+                            if (movedBookNames.contains(cleanedBookName)) {
                                 System.out.println("跳过已移动的书: " + originalFileName);
                                 break; // 跳过，不移动
                             }
@@ -113,8 +116,8 @@ public class FileMoveUtils {
                             Files.move(sourceItem, targetFile,
                                 StandardCopyOption.REPLACE_EXISTING);
 
-                            // 记录书名到缓存
-                            recordBookName(bookName);
+                            // 记录书名到缓存（使用清理后的书名）
+                            recordBookName(cleanedBookName);
 
                             String x = getX(sourceItem, targetFile);
                             System.out.println(x);
@@ -150,6 +153,25 @@ public class FileMoveUtils {
     }
 
     /**
+     * 清理书名，删除空格和特殊符号
+     *
+     * @param bookName
+     *     原始书名
+     *
+     * @return 清理后的书名
+     */
+    private static String cleanBookName(String bookName) {
+        if (bookName == null || bookName.isEmpty()) {
+            return bookName;
+        }
+        // 删除所有空格
+        String cleaned = bookName.replaceAll("\\s+", "");
+        // 删除特殊符号，只保留中文、英文、数字
+        cleaned = cleaned.replaceAll("[^\\u4e00-\\u9fa5a-zA-Z0-9]", "");
+        return cleaned;
+    }
+
+    /**
      * 获取缓存文件路径
      *
      * @return 缓存文件路径
@@ -173,7 +195,11 @@ public class FileMoveUtils {
                 for (String line : lines) {
                     String trimmed = line.trim();
                     if (!trimmed.isEmpty()) {
-                        movedBookNames.add(trimmed);
+                        // 加载时也清理书名（删除空格和特殊符号）
+                        String cleaned = cleanBookName(trimmed);
+                        if (!cleaned.isEmpty()) {
+                            movedBookNames.add(cleaned);
+                        }
                     }
                 }
                 System.out.println(
@@ -185,21 +211,21 @@ public class FileMoveUtils {
     }
 
     /**
-     * 启动移动时，在缓存文件末尾添加换行
+     * 启动移动时，在缓存文件末尾添加2个空行
      */
     private static void appendNewlineToCacheFile() {
         try {
             Path cacheFile = getCacheFilePath();
             // 确保目录存在
             Files.createDirectories(cacheFile.getParent());
-            // 在文件末尾添加换行（如果文件存在）
+            // 在文件末尾添加2个空行（如果文件存在）
             if (Files.exists(cacheFile)) {
-                Files.write(cacheFile,
-                    System.lineSeparator().getBytes(StandardCharsets.UTF_8),
+                String newlines = System.lineSeparator() + System.lineSeparator();
+                Files.write(cacheFile, newlines.getBytes(StandardCharsets.UTF_8),
                     StandardOpenOption.APPEND);
             }
         } catch (IOException e) {
-            System.err.println("添加换行失败: " + e.getMessage());
+            System.err.println("添加空行失败: " + e.getMessage());
         }
     }
 
@@ -214,10 +240,11 @@ public class FileMoveUtils {
             // 添加到内存缓存
             movedBookNames.add(bookName);
 
-            // 写入文件（不换行）
+            // 写入文件（每次记录都换行）
             Path cacheFile = getCacheFilePath();
             Files.createDirectories(cacheFile.getParent());
-            Files.write(cacheFile, bookName.getBytes(StandardCharsets.UTF_8),
+            String content = bookName + System.lineSeparator();
+            Files.write(cacheFile, content.getBytes(StandardCharsets.UTF_8),
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
             System.err.println("记录书名失败: " + bookName + ", 错误: " + e.getMessage());
