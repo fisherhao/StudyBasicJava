@@ -304,7 +304,7 @@ public class FileMoveUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("图书和文本文件平铺移动完成！22");
+        System.out.println("图书和文本文件平铺移动完成！--------------");
 
     }
 
