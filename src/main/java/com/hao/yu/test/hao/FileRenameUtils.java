@@ -170,6 +170,8 @@ public class FileRenameUtils {
 
     public static void main(String[] args) {
 
+        test001("/Users/yuhao/Music/网易云音乐/电台节目", "楓葉落慕 - ", "");
+
         test001("/Users/yuhao/Downloads/06网盘/00目标文件", "[图灵交互设计丛书].", "");
         test001("/Users/yuhao/Downloads/06网盘/00目标文件", "[图灵图书].", "");
         test001("/Users/yuhao/Downloads/06网盘/00目标文件", "[图灵新知].", "");

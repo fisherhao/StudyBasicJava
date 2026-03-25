@@ -117,6 +117,38 @@ public class Mp3TagEditor {
         }
     }
 
+    private static void editSingleMp3Tag2(File file, String albumName, String artistName) {
+        try {
+            AudioFile audioFile = AudioFileIO.read(file);
+            Tag tag = audioFile.getTagOrCreateAndSetDefault();
+
+            // 获取文件名（不含扩展名）作为标题
+            String fileName = file.getName();
+            String title = fileName.substring(0, fileName.lastIndexOf('.'));
+
+            // 设置标题为文件名
+            tag.setField(FieldKey.TITLE, title);
+
+            // 设置专辑名称
+            tag.setField(FieldKey.ALBUM, albumName);
+
+            tag.setField(FieldKey.MEDIA, "网络");
+
+            tag.setField(FieldKey.ALBUM_ARTIST_SORT, artistName);
+
+            // 保存修改
+            audioFile.commit();
+
+            System.out.println("已修改: " + file.getAbsolutePath() + " -> 标题: " + title
+                + ", 专辑: " + albumName);
+            processedFileCount.incrementAndGet();
+        } catch (Exception e) {
+            System.err.println("修改文件失败: " + file.getAbsolutePath() + ", 错误: "
+                + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public static void test001(String folderPath, String albumName) {
         try {
             batchEditMp3Tags(folderPath, albumName);
@@ -126,7 +158,11 @@ public class Mp3TagEditor {
     }
 
     public static void main(String[] args) {
-        test001("/Users/yuhao/Downloads/06网盘/电台节目1", "凡人修仙传原声带");
+
+//        editSingleMp3Tag2(new File("/Users/yuhao/Downloads/06网盘/阅兵礼炮声音合集.flac"),
+//            "礼炮", "");
+        System.out.println("usoeonerggn");
+        test001("/Users/yuhao/Music/网易云音乐/电台节目", "仙逆原声带");
         test001("/Users/yuhao/Downloads/06网盘/电台节目2", "凡人修仙传原声");
     }
 }
