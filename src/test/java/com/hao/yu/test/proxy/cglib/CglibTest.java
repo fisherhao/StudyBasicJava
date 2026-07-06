@@ -31,11 +31,12 @@ public class CglibTest {
         SmsServiceImpl o = (SmsServiceImpl) enhancer.create();
 
         System.out.println("开始");
-        
+
         System.out.println(o.send("hello"));
         System.out.println("结束");
 
         System.out.println(o.getClass());
+        
         System.out.println(o.getClass().getSimpleName());
     }
 }
