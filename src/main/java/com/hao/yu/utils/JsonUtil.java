@@ -1,6 +1,7 @@
 package com.hao.yu.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 /**
  * 说明：
@@ -11,7 +12,8 @@ import com.alibaba.fastjson.JSON;
 public final class JsonUtil {
 
     private JsonUtil() {
-        throw new AssertionError("No " + this.getClass().getName() + " instances for you!");
+        throw new AssertionError(
+            "No " + this.getClass().getName() + " instances for you!");
     }
 
     public static String toJson(Object obj) {
@@ -20,4 +22,12 @@ public final class JsonUtil {
         }
         return JSON.toJSONString(obj);
     }
+
+    public static String toJsonCircle(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        return JSON.toJSONString(obj, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
 }
