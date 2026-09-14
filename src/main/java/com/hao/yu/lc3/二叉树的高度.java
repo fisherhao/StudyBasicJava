@@ -16,9 +16,27 @@ public class 二叉树的高度 {
 
         int height = getHeight(initNode2);
 
-        System.out.println("树的高度为：");
+        System.out.println("树的高度为1：");
         System.out.println(height);
 
+        Node2 initNode3 = getInitNode();
+
+        int height3 = getHeight(initNode3);
+
+        System.out.println("树的高度为2：");
+        System.out.println(height3);
+
+    }
+
+    private static int getHeight2(Node2 node2) {
+        if (Objects.isNull(node2)) {
+            return 0;
+        }
+        int height = 0;
+        height = Math.max(height, getHeight(node2.right));
+        height = Math.max(height, getHeight(node2.left));
+
+        return height + 1;
     }
 
     private static int getHeight(Node2 node2) {
@@ -65,7 +83,7 @@ public class 二叉树的高度 {
         n2.left = n3;
         n3.left = n4;
         n4.left = n5;
-      
+
         // 右子树分支，增加复杂度
         n1.right = new Node2(100);
 

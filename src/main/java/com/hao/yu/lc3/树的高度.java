@@ -21,6 +21,25 @@ public class 树的高度 {
 
         System.out.println(height);
 
+        Node initNode2 = getInitNode();
+        System.out.println(getiHeight2(initNode2));
+
+    }
+
+    public static int getiHeight2(Node node) {
+
+        if (Objects.isNull(node)) {
+            return 0;
+        }
+
+        int height = 0;
+        if (Objects.nonNull(node.children)) {
+            for (Node child : node.children) {
+                height = Math.max(getHeight(child), height);
+            }
+        }
+
+        return height + 1;
     }
 
     public static int getHeight(Node node) {
