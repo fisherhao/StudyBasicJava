@@ -8,10 +8,20 @@ import java.util.Objects;
  * @author Witty·Kid Fisher
  * @version v 0.1 2026年09月14日 星期一 10:54
  */
-public class 二叉树的高度 {
+public class BinaryTree {
 
     public static void main(String[] args) {
 
+    }
+
+    private static void 二叉树前序遍历() {
+
+    }
+
+    /**
+     * 二叉树的高度
+     */
+    private static void 二叉树的高度() {
         Node2 initNode2 = getInitNode();
 
         int height = getHeight(initNode2);
@@ -21,11 +31,10 @@ public class 二叉树的高度 {
 
         Node2 initNode3 = getInitNode();
 
-        int height3 = getHeight(initNode3);
+        int height3 = getHeight2(initNode3);
 
         System.out.println("树的高度为2：");
         System.out.println(height3);
-
     }
 
     private static int getHeight2(Node2 node2) {
