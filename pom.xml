@@ -18,6 +18,12 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -114,11 +120,7 @@
             <artifactId>imageio-jpeg</artifactId>
             <version>3.10.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.twelvemonkeys.imageio</groupId>
-            <artifactId>imageio-png</artifactId>
-            <version>3.10.1</version>
-        </dependency>
+        <!-- PNG 由 JDK 原生 ImageIO 支持，TwelveMonkeys 没有 imageio-png 构件，无需引入 -->
         <dependency>
             <groupId>com.twelvemonkeys.imageio</groupId>
             <artifactId>imageio-webp</artifactId>
@@ -129,11 +131,7 @@
             <artifactId>imageio-bmp</artifactId>
             <version>3.10.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.twelvemonkeys.imageio</groupId>
-            <artifactId>imageio-gif</artifactId>
-            <version>3.10.1</version>
-        </dependency>
+        <!-- GIF 由 JDK 原生 ImageIO 支持，TwelveMonkeys 没有 imageio-gif 构件，无需引入 -->
         <!-- 可选：TIFF 支持 -->
         <dependency>
             <groupId>com.twelvemonkeys.imageio</groupId>
