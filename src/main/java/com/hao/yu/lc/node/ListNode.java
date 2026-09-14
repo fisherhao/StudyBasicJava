@@ -1,4 +1,4 @@
-package com.hao.yu.lc.listnode;
+package com.hao.yu.lc.node;
 
 import java.io.Serializable;
 
@@ -38,7 +38,7 @@ public class ListNode implements Serializable {
      * Setter method for property <tt>val</tt>.
      *
      * @param val
-     *         value to be assigned to property
+     *     value to be assigned to property
      */
     public void setVal(int val) {
         this.val = val;
@@ -57,7 +57,7 @@ public class ListNode implements Serializable {
      * Setter method for property <tt>next</tt>.
      *
      * @param next
-     *         value to be assigned to property
+     *     value to be assigned to property
      */
     public void setNext(ListNode next) {
         this.next = next;

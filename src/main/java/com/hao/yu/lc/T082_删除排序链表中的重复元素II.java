@@ -1,6 +1,6 @@
 package com.hao.yu.lc;
 
-import com.hao.yu.lc.listnode.ListNode;
+import com.hao.yu.lc.node.ListNode;
 import com.hao.yu.utils.JsonUtil;
 
 import java.util.Objects;
@@ -23,7 +23,8 @@ public class T082_删除排序链表中的重复元素II {
         listNode.next.next.next.next.next = new ListNode(4);
         listNode.next.next.next.next.next.next = new ListNode(5);
 
-        System.out.println(JsonUtil.toJson(new T082_删除排序链表中的重复元素II().deleteDuplicates(listNode)));
+        System.out.println(JsonUtil.toJson(
+            new T082_删除排序链表中的重复元素II().deleteDuplicates(listNode)));
     }
 
     public ListNode deleteDuplicates(ListNode head) {
@@ -38,10 +39,10 @@ public class T082_删除排序链表中的重复元素II {
 
             if (
                 //当前节点和下一个节点相同
-                    (pre.next.next != null && pre.next.val == pre.next.next.val) ||
+                (pre.next.next != null && pre.next.val == pre.next.next.val) ||
 
-                            //当前节点已经存在相同的节点了
-                            (Objects.nonNull(temp) && temp.val == pre.next.val)) {
+                    //当前节点已经存在相同的节点了
+                    (Objects.nonNull(temp) && temp.val == pre.next.val)) {
 
                 temp = pre.next;
                 pre.next = pre.next.next;

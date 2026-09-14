@@ -1,6 +1,6 @@
 package com.hao.yu.lc;
 
-import com.hao.yu.lc.listnode.ListNode;
+import com.hao.yu.lc.node.ListNode;
 import com.hao.yu.utils.JsonUtil;
 
 /**
@@ -17,9 +17,10 @@ public class T083_删除排序链表中的重复元素 {
         listNode.next.next = new ListNode(2);
         listNode.next.next.next = new ListNode(3);
         listNode.next.next.next.next = new ListNode(
-                3
+            3
         );
-        System.out.println(JsonUtil.toJson(new T083_删除排序链表中的重复元素().deleteDuplicates(listNode)));
+        System.out.println(JsonUtil.toJson(
+            new T083_删除排序链表中的重复元素().deleteDuplicates(listNode)));
 
     }
 

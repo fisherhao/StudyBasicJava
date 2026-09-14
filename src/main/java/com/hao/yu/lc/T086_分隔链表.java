@@ -1,6 +1,6 @@
 package com.hao.yu.lc;
 
-import com.hao.yu.lc.listnode.ListNode;
+import com.hao.yu.lc.node.ListNode;
 import com.hao.yu.utils.JsonUtil;
 
 /**
@@ -22,7 +22,7 @@ public class T086_分隔链表 {
     }
 
     public ListNode partition(ListNode head, int x) {
-    
+
         ListNode newNode = new ListNode(0);
 
         ListNode preTarget = newNode;

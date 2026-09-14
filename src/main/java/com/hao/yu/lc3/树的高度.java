@@ -1,8 +1,9 @@
 package com.hao.yu.lc3;
 
+import com.hao.yu.lc.node.NXNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -15,26 +16,26 @@ public class 树的高度 {
 
     public static void main(String[] args) {
 
-        Node initNode = getInitNode();
+        NXNode initNXNode = getInitNode();
 
-        int height = getHeight(initNode);
+        int height = getHeight(initNXNode);
 
         System.out.println(height);
 
-        Node initNode2 = getInitNode();
-        System.out.println(getiHeight2(initNode2));
+        NXNode initNXNode2 = getInitNode();
+        System.out.println(getiHeight2(initNXNode2));
 
     }
 
-    public static int getiHeight2(Node node) {
+    public static int getiHeight2(NXNode NXNode) {
 
-        if (Objects.isNull(node)) {
+        if (Objects.isNull(NXNode)) {
             return 0;
         }
 
         int height = 0;
-        if (Objects.nonNull(node.children)) {
-            for (Node child : node.children) {
+        if (Objects.nonNull(NXNode.children)) {
+            for (NXNode child : NXNode.children) {
                 height = Math.max(getHeight(child), height);
             }
         }
@@ -42,135 +43,119 @@ public class 树的高度 {
         return height + 1;
     }
 
-    public static int getHeight(Node node) {
+    public static int getHeight(NXNode NXNode) {
 
-        if (Objects.isNull(node)) {
+        if (Objects.isNull(NXNode)) {
             return 0;
         }
 
-        if (Objects.isNull(node.children) || node.children.isEmpty()) {
+        if (Objects.isNull(NXNode.children) || NXNode.children.isEmpty()) {
             return 1;
         }
 
         int high = 0;
-        for (Node child : node.children) {
+        for (NXNode child : NXNode.children) {
             high = Math.max(high, getHeight(child));
         }
 
         return high + 1;
     }
 
-    public static Node getInitNode() {
+    public static NXNode getInitNode() {
 
         // 第 1 层
-        Node root = new Node(1);
+        NXNode root = new NXNode(1);
 
         // 第 2 层：10 ~ 16
-        Node n10 = new Node(10);
-        Node n11 = new Node(11);
-        Node n12 = new Node(12);
-        Node n13 = new Node(13);
-        Node n14 = new Node(14);
-        Node n15 = new Node(15);
-        Node n16 = new Node(16);
+        NXNode n10 = new NXNode(10);
+        NXNode n11 = new NXNode(11);
+        NXNode n12 = new NXNode(12);
+        NXNode n13 = new NXNode(13);
+        NXNode n14 = new NXNode(14);
+        NXNode n15 = new NXNode(15);
+        NXNode n16 = new NXNode(16);
         root.children = Arrays.asList(n10, n11, n12, n13, n14, n15, n16);
 
         // 第 3 层
-        Node n101 = new Node(101);
-        Node n102 = new Node(102);
-        Node n103 = new Node(103);
+        NXNode n101 = new NXNode(101);
+        NXNode n102 = new NXNode(102);
+        NXNode n103 = new NXNode(103);
         n10.children = Arrays.asList(n101, n102, n103);
         // n11 是叶子，children 保持 null
 
-        Node n121 = new Node(121);
-        Node n122 = new Node(122);
-        Node n123 = new Node(123);
+        NXNode n121 = new NXNode(121);
+        NXNode n122 = new NXNode(122);
+        NXNode n123 = new NXNode(123);
         n12.children = Arrays.asList(n121, n122, n123);
 
         // n13 是九叉
-        Node n131 = new Node(131);
-        Node n132 = new Node(132);
-        Node n133 = new Node(133);
-        Node n134 = new Node(134);
-        Node n135 = new Node(135);
-        Node n136 = new Node(136);
-        Node n137 = new Node(137);
-        Node n138 = new Node(138);
-        Node n139 = new Node(139);
+        NXNode n131 = new NXNode(131);
+        NXNode n132 = new NXNode(132);
+        NXNode n133 = new NXNode(133);
+        NXNode n134 = new NXNode(134);
+        NXNode n135 = new NXNode(135);
+        NXNode n136 = new NXNode(136);
+        NXNode n137 = new NXNode(137);
+        NXNode n138 = new NXNode(138);
+        NXNode n139 = new NXNode(139);
         n13.children = Arrays.asList(n131, n132, n133, n134, n135, n136, n137, n138,
             n139);
 
         // n14 是四叉
-        Node n141 = new Node(141);
-        Node n142 = new Node(142);
-        Node n143 = new Node(143);
-        Node n144 = new Node(144);
+        NXNode n141 = new NXNode(141);
+        NXNode n142 = new NXNode(142);
+        NXNode n143 = new NXNode(143);
+        NXNode n144 = new NXNode(144);
         n14.children = Arrays.asList(n141, n142, n143, n144);
         // n15 是叶子，children 保持 null
         // n16 是空孩子的特殊情况
         n16.children = new ArrayList<>();
 
         // 第 4 层：主干 101 是四叉
-        Node n1011 = new Node(1011);
-        Node n1012 = new Node(1012);
-        Node n1013 = new Node(1013);
-        Node n1014 = new Node(1014);
+        NXNode n1011 = new NXNode(1011);
+        NXNode n1012 = new NXNode(1012);
+        NXNode n1013 = new NXNode(1013);
+        NXNode n1014 = new NXNode(1014);
         n101.children = Arrays.asList(n1011, n1012, n1013, n1014);
 
-        Node n1211 = new Node(1211);
-        Node n1212 = new Node(1212);
+        NXNode n1211 = new NXNode(1211);
+        NXNode n1212 = new NXNode(1212);
         n121.children = Arrays.asList(n1211, n1212);
 
         // 第 5 层
-        Node n10111 = new Node(10111);
-        Node n10112 = new Node(10112);
-        Node n10113 = new Node(10113);
+        NXNode n10111 = new NXNode(10111);
+        NXNode n10112 = new NXNode(10112);
+        NXNode n10113 = new NXNode(10113);
         n1011.children = Arrays.asList(n10111, n10112, n10113);
 
         // 第 6 层
-        Node n101111 = new Node(101111);
-        Node n101112 = new Node(101112);
+        NXNode n101111 = new NXNode(101111);
+        NXNode n101112 = new NXNode(101112);
         n10111.children = Arrays.asList(n101111, n101112);
 
         // 第 7 层：五叉
-        Node n1011111 = new Node(1011111);
-        Node n1011112 = new Node(1011112);
-        Node n1011113 = new Node(1011113);
-        Node n1011114 = new Node(1011114);
-        Node n1011115 = new Node(1011115);
+        NXNode n1011111 = new NXNode(1011111);
+        NXNode n1011112 = new NXNode(1011112);
+        NXNode n1011113 = new NXNode(1011113);
+        NXNode n1011114 = new NXNode(1011114);
+        NXNode n1011115 = new NXNode(1011115);
         n101111.children = Arrays.asList(n1011111, n1011112, n1011113, n1011114,
             n1011115);
 
         // 第 8 层
-        Node n10111111 = new Node(10111111);
-        Node n10111112 = new Node(10111112);
-        Node n10111113 = new Node(10111113);
+        NXNode n10111111 = new NXNode(10111111);
+        NXNode n10111112 = new NXNode(10111112);
+        NXNode n10111113 = new NXNode(10111113);
         n1011111.children = Arrays.asList(n10111111, n10111112, n10111113);
 
         // 第 9 层：最底层，都是叶子
-        Node n101111111 = new Node(101111111);
-        Node n101111112 = new Node(101111112);
-        Node n101111113 = new Node(101111113);
+        NXNode n101111111 = new NXNode(101111111);
+        NXNode n101111112 = new NXNode(101111112);
+        NXNode n101111113 = new NXNode(101111113);
         n10111111.children = Arrays.asList(n101111111, n101111112, n101111113);
 
         return root;
     }
 }
 
-class Node {
-    public int val;
-    public List<Node> children;
-
-    public Node() {
-    }
-
-    public Node(int _val) {
-        val = _val;
-    }
-
-    public Node(int _val, List<Node> _children) {
-        val = _val;
-        children = _children;
-    }
-}
 
