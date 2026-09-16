@@ -2,7 +2,11 @@ package com.hao.yu.lc;
 
 import com.hao.yu.lc.node.BNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 /**
  * 说明：二叉树相关的操作嘛
@@ -13,14 +17,145 @@ import java.util.Objects;
 public class BinaryTree {
 
     public static void main(String[] args) {
+        System.out.println("前序遍历");
         二叉树前序遍历();
+        System.out.println();
+        System.out.println("中序遍历");
+        二叉树中序遍历();
+        System.out.println();
+        System.out.println("后序遍历");
+        二叉树后序遍历();
+        System.out.println();
+        System.out.println("层序遍历");
+        二叉树层序遍历();
+        System.out.println();
+        System.out.println("===============================");
+        System.out.println("前序遍历2");
+        二叉树前序遍历2();
+        System.out.println();
+        System.out.println("中序遍历2");
+        二叉树钟中遍历2();
+        System.out.println();
+        System.out.println("后序遍历2");
+        二叉树后序遍历2();
     }
 
+    /**
+     * 二叉树前序遍历
+     * 1 2 5 9 6 10 11 3 7 8 12
+     */
     private static void 二叉树前序遍历() {
 
         BNode initBNode = getInitNode2();
 
         preOrder(initBNode);
+    }
+
+    /**
+     * 二叉树前序遍历:使用非递归的形式出现
+     * 1 2 5 9 6 10 11 3 7 8 12
+     */
+    private static void 二叉树前序遍历2() {
+
+        BNode node = getInitNode2();
+
+        preOrderLevel(node);
+
+    }
+
+    private static void 二叉树中序遍历2() {
+
+        BNode node = getInitNode2();
+
+        preOrderLevel(node);
+
+    }
+
+    /**
+     * 二叉树后序遍历
+     * 9 10 5 11 6 2 12 8 7 3 1
+     */
+    private static void 二叉树后序遍历() {
+
+        BNode initBNode = getInitNode2();
+
+        afterOrder(initBNode);
+    }
+
+    /**
+     * 二叉树的后序遍历2
+     */
+    private static void 二叉树后序遍历2() {
+        BNode node = getInitNode2();
+        afterOrderLevel(node);
+    }
+
+    /**
+     * 二叉树中序遍历
+     * 9 5 10 2 11 6 1 7 3 8 12
+     */
+    private static void 二叉树中序遍历() {
+
+        BNode initBNode = getInitNode2();
+
+        mediumOrder(initBNode);
+    }
+
+    /**
+     * 钟旭遍历2
+     */
+    private static void 二叉树钟中遍历2() {
+        BNode node = getInitNode2();
+        mediumOrderLevel(node);
+    }
+
+    /**
+     * 二叉树层序遍历
+     * 1 2 3 4 5 6 7 8 9 10 11 12
+     */
+    private static void 二叉树层序遍历() {
+
+        BNode initBNode = getInitNode2();
+
+        levelOrder(initBNode);
+    }
+
+    private static void mediumOrder(BNode node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        mediumOrder(node.left);
+        System.out.print(node.val + "->");
+        mediumOrder(node.right);
+    }
+
+    private static void afterOrder(BNode node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        afterOrder(node.left);
+        afterOrder(node.right);
+        System.out.print(node.val + "->");
+    }
+
+    private static void levelOrder(BNode node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+        Queue<BNode> queue = new LinkedList<>();
+        queue.offer(node);
+
+        while (!queue.isEmpty()) {
+            BNode root = queue.poll();
+            System.out.print(root.val + "->");
+            if (Objects.nonNull(root.left)) {
+                queue.offer(root.left);
+            }
+            if (Objects.nonNull(root.right)) {
+                queue.offer(root.right);
+            }
+        }
+
     }
 
     private static void preOrder(BNode node) {
@@ -29,10 +164,117 @@ public class BinaryTree {
             return;
         }
 
-        System.out.println(node.val);
+        System.out.print(node.val + "->");
 
         preOrder(node.left);
         preOrder(node.right);
+    }
+
+    /**
+     * 二叉树前序遍历2:使用非递归的形式出现
+     *
+     * @param node
+     */
+    /**
+     * 初始化二叉树
+     * <p>
+     * 1
+     * / \
+     * 2   3
+     * / \ / \
+     * 5  6 7  8
+     * \ / \   /
+     * 9 10 11  12
+     *
+     * @return
+     */
+    private static void preOrderLevel(BNode node) {
+
+        if (Objects.isNull(node)) {
+            return;
+        }
+
+        Deque<BNode> queue = new ArrayDeque<>();
+        //根-左-右
+        queue.push(node);
+        while (!queue.isEmpty()) {
+            BNode poll = queue.pop();
+            int val = poll.val;
+            System.out.print(val + "->");
+            BNode right = poll.right;
+            if (Objects.nonNull(right)) {
+                queue.push(right);
+            }
+            BNode left = poll.left;
+            if (Objects.nonNull(left)) {
+                queue.push(left);
+            }
+        }
+
+    }
+
+    /**
+     * 初始化二叉树
+     * <p>
+     * 1
+     * / \
+     * 2   3
+     * / \ / \
+     * 5  6 7  8
+     * \ / \   /
+     * 9 10 11  12
+     *
+     * @return
+     */
+    private static void mediumOrderLevel(BNode node) {
+
+        if (Objects.isNull(node)) {
+            return;
+        }
+
+        Deque<BNode> stack = new ArrayDeque<>();
+        //左 ->跟->右
+        BNode cur = node;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            BNode poll = stack.pop();
+            int val = poll.val;
+            System.out.print(val + "->");
+            cur = poll.right;
+        }
+
+    }
+
+    private static void afterOrderLevel(BNode node) {
+
+        if (Objects.isNull(node)) {
+            return;
+        }
+
+        Deque<BNode> stack1 = new ArrayDeque<>();
+        Deque<BNode> stack2 = new ArrayDeque<>();
+        stack1.push(node);
+
+        //左 ->右->跟
+        while (!stack1.isEmpty()) {
+            BNode pop = stack1.pop();
+            stack2.push(pop);
+
+            if (Objects.nonNull(pop.left)) {
+                stack1.push(pop.left);
+            }
+            if (Objects.nonNull(pop.right)) {
+                stack1.push(pop.right);
+            }
+        }
+        while (!stack2.isEmpty()) {
+            BNode pop = stack2.pop();
+            System.out.print(pop.val + "->");
+        }
+
     }
 
     /**

@@ -3,6 +3,7 @@ package com.hao.yu.lc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 说明：
@@ -102,11 +103,20 @@ public class T015_三数之和 {
     public static void main(String[] args) {
 
         int[] nums = new int[]{
-                0, 0, 0, -1, 0, 1, 2, -1, -4, 9, 9, 9, 9, 9
+            0, 0, 0, -1, 0, 1, 2, -1, -4, 9, 9, 9, 9, 9
         };
 
         List<List<Integer>> threeSum = threeSum(nums);
         System.out.println(threeSum);
 
+    }
+
+    public static int[] quickSort(int[] nums) {
+
+        if (Objects.isNull(nums)) {
+            return new int[0];
+        }
+
+        return nums;
     }
 }

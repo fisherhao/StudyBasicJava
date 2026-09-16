@@ -1,5 +1,9 @@
 package com.hao.yu.lc;
 
+import com.hao.yu.utils.JsonUtil;
+
+import java.util.Objects;
+
 /**
  * 说明：
  *
@@ -9,6 +13,7 @@ package com.hao.yu.lc;
 public class T092_链表反转II {
 
     public static void main(String[] args) {
+        test();
 
         ListNode initNodes = getInitNodes();
 
@@ -18,11 +23,40 @@ public class T092_链表反转II {
 
     }
 
+    private static void test() {
+        ListNode initNodes = getInitNodes();
+
+        ListNode listNode = reverseBetween(initNodes);
+        printListNode(listNode);
+
+        System.out.println(JsonUtil.toJson(listNode));
+    }
+
     private static void printListNode(ListNode listNode) {
-        while (listNode.next != null) {
-            System.out.println(listNode.val);
+        while (listNode != null) {
+            System.out.print(listNode.val + "->");
             listNode = listNode.next;
         }
+    }
+
+    private static ListNode reverseBetween(ListNode head) {
+        if (Objects.isNull(head)) {
+            return null;
+        }
+
+        ListNode dumny = new ListNode(-1);
+        dumny.next = head;
+
+        ListNode cur = head;
+        while (cur.next != null) {
+            ListNode next = cur.next;
+
+            cur.next = next.next;
+            next.next = dumny.next;
+            dumny.next = next;
+        }
+
+        return dumny.next;
     }
 
     private static ListNode reverseBetween(ListNode head, int left, int right) {
