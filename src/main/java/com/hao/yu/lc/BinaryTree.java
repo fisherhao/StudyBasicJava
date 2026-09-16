@@ -1,6 +1,6 @@
 package com.hao.yu.lc;
 
-import com.hao.yu.lc.node.BNode;
+import com.hao.yu.lc.node.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -46,9 +46,9 @@ public class BinaryTree {
      */
     private static void 二叉树前序遍历() {
 
-        BNode initBNode = getInitNode2();
+        TreeNode initTreeNode = getInitNode2();
 
-        preOrder(initBNode);
+        preOrder(initTreeNode);
     }
 
     /**
@@ -57,7 +57,7 @@ public class BinaryTree {
      */
     private static void 二叉树前序遍历2() {
 
-        BNode node = getInitNode2();
+        TreeNode node = getInitNode2();
 
         preOrderLevel(node);
 
@@ -65,7 +65,7 @@ public class BinaryTree {
 
     private static void 二叉树中序遍历2() {
 
-        BNode node = getInitNode2();
+        TreeNode node = getInitNode2();
 
         preOrderLevel(node);
 
@@ -77,16 +77,16 @@ public class BinaryTree {
      */
     private static void 二叉树后序遍历() {
 
-        BNode initBNode = getInitNode2();
+        TreeNode initTreeNode = getInitNode2();
 
-        afterOrder(initBNode);
+        afterOrder(initTreeNode);
     }
 
     /**
      * 二叉树的后序遍历2
      */
     private static void 二叉树后序遍历2() {
-        BNode node = getInitNode2();
+        TreeNode node = getInitNode2();
         afterOrderLevel(node);
     }
 
@@ -96,16 +96,16 @@ public class BinaryTree {
      */
     private static void 二叉树中序遍历() {
 
-        BNode initBNode = getInitNode2();
+        TreeNode initTreeNode = getInitNode2();
 
-        mediumOrder(initBNode);
+        mediumOrder(initTreeNode);
     }
 
     /**
      * 钟旭遍历2
      */
     private static void 二叉树钟中遍历2() {
-        BNode node = getInitNode2();
+        TreeNode node = getInitNode2();
         mediumOrderLevel(node);
     }
 
@@ -115,12 +115,12 @@ public class BinaryTree {
      */
     private static void 二叉树层序遍历() {
 
-        BNode initBNode = getInitNode2();
+        TreeNode initTreeNode = getInitNode2();
 
-        levelOrder(initBNode);
+        levelOrder(initTreeNode);
     }
 
-    private static void mediumOrder(BNode node) {
+    private static void mediumOrder(TreeNode node) {
         if (Objects.isNull(node)) {
             return;
         }
@@ -129,7 +129,7 @@ public class BinaryTree {
         mediumOrder(node.right);
     }
 
-    private static void afterOrder(BNode node) {
+    private static void afterOrder(TreeNode node) {
         if (Objects.isNull(node)) {
             return;
         }
@@ -138,15 +138,15 @@ public class BinaryTree {
         System.out.print(node.val + "->");
     }
 
-    private static void levelOrder(BNode node) {
+    private static void levelOrder(TreeNode node) {
         if (Objects.isNull(node)) {
             return;
         }
-        Queue<BNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(node);
 
         while (!queue.isEmpty()) {
-            BNode root = queue.poll();
+            TreeNode root = queue.poll();
             System.out.print(root.val + "->");
             if (Objects.nonNull(root.left)) {
                 queue.offer(root.left);
@@ -158,7 +158,7 @@ public class BinaryTree {
 
     }
 
-    private static void preOrder(BNode node) {
+    private static void preOrder(TreeNode node) {
 
         if (Objects.isNull(node)) {
             return;
@@ -188,24 +188,24 @@ public class BinaryTree {
      *
      * @return
      */
-    private static void preOrderLevel(BNode node) {
+    private static void preOrderLevel(TreeNode node) {
 
         if (Objects.isNull(node)) {
             return;
         }
 
-        Deque<BNode> queue = new ArrayDeque<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
         //根-左-右
         queue.push(node);
         while (!queue.isEmpty()) {
-            BNode poll = queue.pop();
+            TreeNode poll = queue.pop();
             int val = poll.val;
             System.out.print(val + "->");
-            BNode right = poll.right;
+            TreeNode right = poll.right;
             if (Objects.nonNull(right)) {
                 queue.push(right);
             }
-            BNode left = poll.left;
+            TreeNode left = poll.left;
             if (Objects.nonNull(left)) {
                 queue.push(left);
             }
@@ -226,21 +226,21 @@ public class BinaryTree {
      *
      * @return
      */
-    private static void mediumOrderLevel(BNode node) {
+    private static void mediumOrderLevel(TreeNode node) {
 
         if (Objects.isNull(node)) {
             return;
         }
 
-        Deque<BNode> stack = new ArrayDeque<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         //左 ->跟->右
-        BNode cur = node;
+        TreeNode cur = node;
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }
-            BNode poll = stack.pop();
+            TreeNode poll = stack.pop();
             int val = poll.val;
             System.out.print(val + "->");
             cur = poll.right;
@@ -248,19 +248,19 @@ public class BinaryTree {
 
     }
 
-    private static void afterOrderLevel(BNode node) {
+    private static void afterOrderLevel(TreeNode node) {
 
         if (Objects.isNull(node)) {
             return;
         }
 
-        Deque<BNode> stack1 = new ArrayDeque<>();
-        Deque<BNode> stack2 = new ArrayDeque<>();
+        Deque<TreeNode> stack1 = new ArrayDeque<>();
+        Deque<TreeNode> stack2 = new ArrayDeque<>();
         stack1.push(node);
 
         //左 ->右->跟
         while (!stack1.isEmpty()) {
-            BNode pop = stack1.pop();
+            TreeNode pop = stack1.pop();
             stack2.push(pop);
 
             if (Objects.nonNull(pop.left)) {
@@ -271,7 +271,7 @@ public class BinaryTree {
             }
         }
         while (!stack2.isEmpty()) {
-            BNode pop = stack2.pop();
+            TreeNode pop = stack2.pop();
             System.out.print(pop.val + "->");
         }
 
@@ -281,14 +281,14 @@ public class BinaryTree {
      * 二叉树的高度
      */
     private static void 二叉树的高度() {
-        BNode initBNode = getInitNode();
+        TreeNode initTreeNode = getInitNode();
 
-        int height = getHeight(initBNode);
+        int height = getHeight(initTreeNode);
 
         System.out.println("树的高度为1：");
         System.out.println(height);
 
-        BNode initNode3 = getInitNode();
+        TreeNode initNode3 = getInitNode();
 
         int height3 = getHeight2(initNode3);
 
@@ -296,32 +296,32 @@ public class BinaryTree {
         System.out.println(height3);
     }
 
-    private static int getHeight2(BNode BNode) {
-        if (Objects.isNull(BNode)) {
+    private static int getHeight2(TreeNode TreeNode) {
+        if (Objects.isNull(TreeNode)) {
             return 0;
         }
         int height = 0;
-        height = Math.max(height, getHeight(BNode.right));
-        height = Math.max(height, getHeight(BNode.left));
+        height = Math.max(height, getHeight(TreeNode.right));
+        height = Math.max(height, getHeight(TreeNode.left));
 
         return height + 1;
     }
 
-    private static int getHeight(BNode BNode) {
+    private static int getHeight(TreeNode TreeNode) {
 
-        if (Objects.isNull(BNode)) {
+        if (Objects.isNull(TreeNode)) {
             return 0;
         }
-        if (Objects.isNull(BNode.left) && Objects.isNull(BNode.right)) {
+        if (Objects.isNull(TreeNode.left) && Objects.isNull(TreeNode.right)) {
             return 1;
         }
         int length = 0;
 
-        if (Objects.nonNull(BNode.right)) {
-            length = Math.max(length, getHeight(BNode.right));
+        if (Objects.nonNull(TreeNode.right)) {
+            length = Math.max(length, getHeight(TreeNode.right));
         }
-        if (Objects.nonNull(BNode.left)) {
-            length = Math.max(length, getHeight(BNode.left));
+        if (Objects.nonNull(TreeNode.left)) {
+            length = Math.max(length, getHeight(TreeNode.left));
         }
 
         return length + 1;
@@ -340,19 +340,19 @@ public class BinaryTree {
      *
      * @return
      */
-    private static BNode getInitNode2() {
-        BNode root = new BNode(1);
-        BNode n2 = new BNode(2);
-        BNode n3 = new BNode(3);
-        BNode n4 = new BNode(4);
-        BNode n5 = new BNode(5);
-        BNode n6 = new BNode(6);
-        BNode n7 = new BNode(7);
-        BNode n8 = new BNode(8);
-        BNode n9 = new BNode(9);
-        BNode n10 = new BNode(10);
-        BNode n11 = new BNode(11);
-        BNode n12 = new BNode(12);
+    private static TreeNode getInitNode2() {
+        TreeNode root = new TreeNode(1);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n3 = new TreeNode(3);
+        TreeNode n4 = new TreeNode(4);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n6 = new TreeNode(6);
+        TreeNode n7 = new TreeNode(7);
+        TreeNode n8 = new TreeNode(8);
+        TreeNode n9 = new TreeNode(9);
+        TreeNode n10 = new TreeNode(10);
+        TreeNode n11 = new TreeNode(11);
+        TreeNode n12 = new TreeNode(12);
 
         root.left = n2;
         root.right = n3;
@@ -369,24 +369,24 @@ public class BinaryTree {
         return root;
     }
 
-    private static BNode getInitNode() {
+    private static TreeNode getInitNode() {
 
         // 主干左链 1~15，保证树高 15
-        BNode n1 = new BNode(1);
-        BNode n2 = new BNode(2);
-        BNode n3 = new BNode(3);
-        BNode n4 = new BNode(4);
-        BNode n5 = new BNode(5);
-        BNode n6 = new BNode(6);
-        BNode n7 = new BNode(7);
-        BNode n8 = new BNode(8);
-        BNode n9 = new BNode(9);
-        BNode n10 = new BNode(10);
-        BNode n11 = new BNode(11);
-        BNode n12 = new BNode(12);
-        BNode n13 = new BNode(13);
-        BNode n14 = new BNode(14);
-        BNode n15 = new BNode(15);
+        TreeNode n1 = new TreeNode(1);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n3 = new TreeNode(3);
+        TreeNode n4 = new TreeNode(4);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n6 = new TreeNode(6);
+        TreeNode n7 = new TreeNode(7);
+        TreeNode n8 = new TreeNode(8);
+        TreeNode n9 = new TreeNode(9);
+        TreeNode n10 = new TreeNode(10);
+        TreeNode n11 = new TreeNode(11);
+        TreeNode n12 = new TreeNode(12);
+        TreeNode n13 = new TreeNode(13);
+        TreeNode n14 = new TreeNode(14);
+        TreeNode n15 = new TreeNode(15);
 
         // 左链连接
         n1.left = n2;
@@ -395,32 +395,32 @@ public class BinaryTree {
         n4.left = n5;
 
         // 右子树分支，增加复杂度
-        n1.right = new BNode(100);
+        n1.right = new TreeNode(100);
 
-        BNode n300 = new BNode(300);
-        BNode n3001 = new BNode(3001);
-        BNode n30011 = new BNode(30011);
+        TreeNode n300 = new TreeNode(300);
+        TreeNode n3001 = new TreeNode(3001);
+        TreeNode n30011 = new TreeNode(30011);
         n3.right = n300;
         n300.left = n3001;
         n3001.left = n30011;
 
-        BNode n500 = new BNode(500);
-        BNode n5001 = new BNode(5001);
+        TreeNode n500 = new TreeNode(500);
+        TreeNode n5001 = new TreeNode(5001);
         n5.right = n500;
         n500.left = n5001;
 
-        n7.right = new BNode(700);
+        n7.right = new TreeNode(700);
 
-        BNode n1000 = new BNode(1000);
-        BNode n10001 = new BNode(10001);
-        BNode n100011 = new BNode(100011);
-        BNode n1000111 = new BNode(1000111);
+        TreeNode n1000 = new TreeNode(1000);
+        TreeNode n10001 = new TreeNode(10001);
+        TreeNode n100011 = new TreeNode(100011);
+        TreeNode n1000111 = new TreeNode(1000111);
         n10.right = n1000;
         n1000.left = n10001;
         n10001.left = n100011;
         n100011.left = n1000111;
 
-        n13.right = new BNode(1300);
+        n13.right = new TreeNode(1300);
 
         return n1;
     }

@@ -8,22 +8,22 @@ import java.io.Serializable;
  * @author Witty·Kid Fisher
  * @version v 0.1 2026年09月15日 星期二 00:08
  */
-public class BNode implements Serializable {
+public class TreeNode implements Serializable {
 
     private static final long serialVersionUID = 3663789122656356551L;
     public int val;
-    public BNode left;
+    public TreeNode left;
 
-    public BNode right;
+    public TreeNode right;
 
-    public BNode() {
+    public TreeNode() {
     }
 
-    public BNode(int _val) {
+    public TreeNode(int _val) {
         val = _val;
     }
 
-    public BNode(int _val, BNode _left, BNode _right) {
+    public TreeNode(int _val, TreeNode _left, TreeNode _right) {
         val = _val;
         left = _left;
         right = _right;
