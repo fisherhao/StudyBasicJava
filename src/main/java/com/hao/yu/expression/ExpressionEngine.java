@@ -17,6 +17,14 @@ public class ExpressionEngine {
         return convertResult(result, clazz);
     }
 
+    /**
+     * @param expression
+     *     表达式
+     * @param params
+     *     入参
+     *
+     * @return 替换后的表达式
+     */
     private static String replaceVariables(String expression, Map<String, String> params) {
         String result = expression;
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -25,16 +33,33 @@ public class ExpressionEngine {
         return result;
     }
 
+    /**
+     * 执行表达式
+     *
+     * @param expression
+     *     表达式
+     *
+     * @return 计算结果
+     */
     private static Object evaluateExpression(String expression) {
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
         try {
+            //执行
             return engine.eval(expression);
         } catch (ScriptException e) {
             throw new IllegalArgumentException("表达式解析失败: " + expression, e);
         }
     }
 
+    /**
+     * @param result
+     *     计算结果
+     * @param clazz
+     *     目标类型
+     *
+     * @return 转换后的结果
+     */
     @SuppressWarnings("unchecked")
     private static <T> T convertResult(Object result, Class<T> clazz) {
         if (clazz == Integer.class) {
@@ -49,7 +74,6 @@ public class ExpressionEngine {
             throw new IllegalArgumentException("不支持的目标类型: " + clazz.getName());
         }
     }
-
 
     public static void main(String[] args) {
         // 测试用例：a=2, b=3, c=4，表达式 a+b*c+(a+b)*c 应计算为 2+3*4+(2+3)*4 = 2+12+20=34
