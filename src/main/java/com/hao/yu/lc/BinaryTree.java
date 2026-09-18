@@ -198,14 +198,14 @@ public class BinaryTree {
         //根-左-右
         queue.push(node);
         while (!queue.isEmpty()) {
-            TreeNode poll = queue.pop();
-            int val = poll.val;
+            TreeNode pop = queue.pop();
+            int val = pop.val;
             System.out.print(val + "->");
-            TreeNode right = poll.right;
+            TreeNode right = pop.right;
             if (Objects.nonNull(right)) {
                 queue.push(right);
             }
-            TreeNode left = poll.left;
+            TreeNode left = pop.left;
             if (Objects.nonNull(left)) {
                 queue.push(left);
             }
@@ -240,10 +240,10 @@ public class BinaryTree {
                 stack.push(cur);
                 cur = cur.left;
             }
-            TreeNode poll = stack.pop();
-            int val = poll.val;
+            TreeNode pop = stack.pop();
+            int val = pop.val;
             System.out.print(val + "->");
-            cur = poll.right;
+            cur = pop.right;
         }
 
     }

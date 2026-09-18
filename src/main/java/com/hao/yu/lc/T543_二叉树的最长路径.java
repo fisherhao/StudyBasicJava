@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class T543_二叉树的最长路径 {
 
-    private static int weight = 0;
+    private static int maxDiameter = 0;
 
     public static void main(String[] args) {
         test();
@@ -20,8 +20,9 @@ public class T543_二叉树的最长路径 {
 
     private static void test() {
         TreeNode initTreeNode = getInitTreeNode();
-        depth(initTreeNode);
-        System.out.println(weight);
+        int depth = depth(initTreeNode);
+        System.out.println(maxDiameter);
+        System.out.println(depth);
     }
 
     private static TreeNode getInitTreeNode() {
@@ -38,8 +39,10 @@ public class T543_二叉树的最长路径 {
         int left = depth(root.left);
         int right = depth(root.right);
 
-        weight = Math.max(weight, left + right);
+        //直径
+        maxDiameter = Math.max(maxDiameter, left + right);
 
+        //单边节点数
         return Math.max(left, right) + 1;
     }
 

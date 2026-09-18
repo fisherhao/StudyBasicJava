@@ -1,5 +1,7 @@
 package com.hao.yu.lc;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * 说明：
  *
@@ -8,16 +10,20 @@ package com.hao.yu.lc;
  */
 public class T143_重拍列表 {
     public static void main(String[] args) {
-
+        test();
     }
 
     private static void test() {
 
+        ListNode listNode = initNode();
+        ListNode listNode1 = reorderList(listNode);
+
+        System.out.println(JSON.toJSONString(listNode1));
     }
 
-    public static void reorderList(ListNode head) {
+    public static ListNode reorderList(ListNode head) {
         if (head == null || head.next == null) {
-            return;
+            return null;
         }
         ListNode slow = head, fast = head;
         while (fast.next != null && fast.next.next != null) {
@@ -32,6 +38,7 @@ public class T143_重拍列表 {
         ListNode rDummny = new ListNode(-1);
         rDummny.next = rightHead;
         ListNode rCur = rightHead;
+
         while (rCur.next != null) {
             ListNode next = rCur.next;
             rCur.next = next.next;
@@ -39,9 +46,23 @@ public class T143_重拍列表 {
             rDummny.next = next;
         }
 
+        //左边链表
         ListNode l1 = head;
+        //右边反转链表
         ListNode l2 = rDummny.next;
 
+        while (l1 != null && l2 != null) {
+            ListNode next1 = l1.next;
+            ListNode next2 = l2.next;
+
+            l1.next = l2;
+            l1 = next1;
+
+            l2.next = next1;
+            l2 = next2;
+
+        }
+        return head;
     }
 
     private static ListNode initNode() {
