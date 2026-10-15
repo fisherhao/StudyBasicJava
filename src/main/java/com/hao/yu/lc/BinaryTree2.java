@@ -2,6 +2,8 @@ package com.hao.yu.lc;
 
 import com.hao.yu.lc.node.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,9 +17,60 @@ public class BinaryTree2 {
 
     public static void main(String[] args) {
 
+        System.out.println("前序遍历，非递归实现");
         preOrder2(getInitNode2());
+        System.out.println();
+        System.out.println("层序遍历，非递归实现");
         levelOrder(getInitNode2());
 
+    }
+
+    private static void mediumOrder2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+
+        TreeNode cur = root;
+
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode pop = stack.pop();
+            System.out.print(pop.val + "->");
+            cur = pop.right;
+        }
+    }
+
+    /**
+     * 后序遍历，非递归实现
+     *
+     * @param root
+     */
+    private static void lastOrder2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Deque<TreeNode> stack1 = new ArrayDeque<>();
+        Deque<TreeNode> stack2 = new ArrayDeque<>();
+        stack1.push(root);
+
+        while (!stack1.isEmpty()) {
+            TreeNode pop = stack1.pop();
+
+            //根
+            stack2.push(pop);
+            //左
+            if (pop.left != null) {
+                stack1.push(pop.left);
+            }
+            //右
+            if (pop.right != null) {
+                stack1.push(pop.right);
+            }
+        }
     }
 
     private static void preOrder(TreeNode node) {
@@ -38,7 +91,20 @@ public class BinaryTree2 {
         if (node == null) {
             return;
         }
+        Deque<TreeNode> stack = new ArrayDeque<>();
 
+        stack.push(node);
+
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            System.out.print(pop.val + "->");
+            if (pop.right != null) {
+                stack.push(pop.right);
+            }
+            if (pop.left != null) {
+                stack.push(pop.left);
+            }
+        }
     }
 
     /**
@@ -63,7 +129,6 @@ public class BinaryTree2 {
             if (poll.right != null) {
                 stack.offer(poll.right);
             }
-
         }
     }
 
