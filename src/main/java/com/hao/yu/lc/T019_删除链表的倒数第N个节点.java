@@ -56,6 +56,10 @@ public class T019_删除链表的倒数第N个节点 {
 
     private static int move(ListNode head, int n) {
 
+        if (Objects.isNull(head)) {
+            return 0;
+        }
+
         if (head.next == null) {
             return 1;
         }
@@ -97,7 +101,7 @@ public class T019_删除链表的倒数第N个节点 {
          * Setter method for property <tt>val</tt>.
          *
          * @param val
-         *         value to be assigned to property
+         *     value to be assigned to property
          */
         public void setVal(int val) {
             this.val = val;
@@ -116,7 +120,7 @@ public class T019_删除链表的倒数第N个节点 {
          * Setter method for property <tt>next</tt>.
          *
          * @param next
-         *         value to be assigned to property
+         *     value to be assigned to property
          */
         public void setNext(ListNode next) {
             this.next = next;

@@ -30,12 +30,12 @@ public class T024_两两交换链表中的节点 {
 
     }
 
-    public static ListNode swapPairs(ListNode head) {
+    public static ListNode swapPairs(ListNode root) {
 
-        ListNode newNode = new ListNode(0, head);
+        ListNode head = new ListNode(0, root);
 
         //当前只针
-        ListNode current = newNode;
+        ListNode current = head;
 
         //尾针
         while (Objects.nonNull(current.next) && Objects.nonNull(current.next.next)) {
@@ -58,7 +58,7 @@ public class T024_两两交换链表中的节点 {
 //            current = tail;
         }
 
-        return newNode.next;
+        return head.next;
     }
 
     public static class ListNode {
@@ -90,7 +90,7 @@ public class T024_两两交换链表中的节点 {
          * Setter method for property <tt>val</tt>.
          *
          * @param val
-         *         value to be assigned to property
+         *     value to be assigned to property
          */
         public void setVal(int val) {
             this.val = val;
@@ -109,7 +109,7 @@ public class T024_两两交换链表中的节点 {
          * Setter method for property <tt>next</tt>.
          *
          * @param next
-         *         value to be assigned to property
+         *     value to be assigned to property
          */
         public void setNext(ListNode next) {
             this.next = next;

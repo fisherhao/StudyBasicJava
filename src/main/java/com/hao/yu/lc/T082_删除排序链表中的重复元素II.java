@@ -27,10 +27,10 @@ public class T082_删除排序链表中的重复元素II {
             new T082_删除排序链表中的重复元素II().deleteDuplicates(listNode)));
     }
 
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicates(ListNode root) {
 
-        ListNode newNode = new ListNode(0, head);
-        ListNode pre = newNode;
+        ListNode head = new ListNode(0, root);
+        ListNode pre = head;
 
         //记录一下已经重复了的节点，用于做排除运算
         ListNode temp = null;
@@ -51,7 +51,7 @@ public class T082_删除排序链表中的重复元素II {
             }
         }
 
-        return newNode.next;
+        return head.next;
     }
 
 }

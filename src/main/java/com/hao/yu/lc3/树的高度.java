@@ -36,7 +36,7 @@ public class 树的高度 {
         int height = 0;
         if (Objects.nonNull(NXNode.children)) {
             for (NXNode child : NXNode.children) {
-                height = Math.max(getHeight(child), height);
+                height = Math.max(getiHeight2(child), height);
             }
         }
 
