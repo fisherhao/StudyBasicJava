@@ -1,8 +1,6 @@
 package com.hao.yu.utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -14,48 +12,60 @@ import java.util.Scanner;
 public class test {
 
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(System.in);
-        // 注意 hasNext 和 hasNextLine 的区别
-        while (in.hasNextInt()) { // 注意 while 处理多个 case
-            int a = in.nextInt();
-            int b = in.nextInt();
-            System.out.println(a + b);
-        }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String s = reader.readLine();
-        int hang = Integer.parseInt(reader.readLine());
+        Scanner sc = new Scanner(System.in);
 
-        String[] arr = s.split(" ");
+        // 处理多组测试用例（两行一组）
+        while (sc.hasNextLine()) {
+            // 1. 读取第一行（操作序列）
+            String line1 = sc.nextLine().trim();
+            if (line1.isEmpty()) {
+                break; // 遇到空行直接退出
+            }
 
-        int like = 0;
-        int comment = 0;
-        for (int i = 0; i < hang; i++) {
-            Integer num = Integer.valueOf(arr[i]);
+            // 2. 读取第二行（要执行的操作数目）
+            if (!sc.hasNextLine()) break;
+            String line2 = sc.nextLine().trim();
+            if (line2.isEmpty()) break;
 
-            switch (num) {
-                case 1:
-                    comment++;
-                    break;
-                case 2:
-                    like++;
-                    break;
-                case 3:
-                    if (like > comment) {
-                        like++;
-                    } else if (comment > like) {
-                        like++;
-                    } else {
+            int hang = Integer.parseInt(line2);
+
+            // 3. 切分第一行的数据
+            String[] arr = line1.split("\\s+");
+
+            int like = 0;
+            int comment = 0;
+
+            // 防止给的数目大于实际数组长度，取最小值
+            int loopCount = Math.min(hang, arr.length);
+
+            for (int i = 0; i < loopCount; i++) {
+                int num = Integer.parseInt(arr[i]);
+
+                // 4. 核心业务逻辑
+                switch (num) {
+                    case 1:
+                        comment++; // 看到评论就评论
+                        break;
+                    case 2:
+                        like++;    // 看到点赞就点赞
+                        break;
+                    case 3:
+                        // 既点赞又评论
                         like++;
                         comment++;
-                    }
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
+                        break;
+                    case 4:
+                        // 什么都不做
+                        break;
+                    default:
+                        break;
+                }
             }
-            System.out.println(comment + " " + like);
+
+            // 5. 输出这一组最终的结果
+            System.out.println("最终状态 -> 评论数: " + comment + ", 点赞数: " + like);
         }
+        sc.close();
     }
 }
 
