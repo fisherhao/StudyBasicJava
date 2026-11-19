@@ -38,7 +38,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>5.1.35</version>
+            <version>8.0.28</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.71</version>
+            <version>1.2.83</version>
         </dependency>
 
         <!-- jsoup：HTML 解析库（网页抓取测试工具使用），自动处理字符集嗅探与容错解析 -->
